@@ -10,6 +10,7 @@ public class ModuleMain
         {
             Application.Current!.UserAppTheme = AppTheme.Light;
 
+            // Put breakpoint here.
             var navPage = new NavigationPage(new Home());
             Application.Current!.MainPage = navPage;
         });

@@ -23,6 +23,12 @@ public partial class MainPage : ContentPage
             using var writeStream = new FileStream(assemblyPath, FileMode.Create);
             resStream.CopyTo(writeStream);
         }
+        var symbolPath = Path.Combine(FileSystem.AppDataDirectory, "MyModule.pdb");
+        using (var resStream = FileSystem.OpenAppPackageFileAsync("MyModule.pdb").Result)
+        {
+            using var writeStream = new FileStream(symbolPath, FileMode.Create);
+            resStream.CopyTo(writeStream);
+        }
 
         var assem = Assembly.LoadFile(assemblyPath);
         var moduleClass = assem.GetTypes().First(t => t.Name == "ModuleMain");
